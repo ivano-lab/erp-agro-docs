@@ -24,6 +24,7 @@ Este repositório tem como objetivo:
 ## 📂 Organização dos Arquivos
 
 erp-agro-docs/
+
 ├── docs/ <- Documentos em Markdown
 
 │ ├── 01-visao-geral.md
