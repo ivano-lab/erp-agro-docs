@@ -1,0 +1,134 @@
+# 📊 Modelagem de Dados — ERP Agro
+
+Este documento descreve a modelagem atual do banco de dados do ERP Agro, com foco nas entidades centrais que compõem os módulos de gestão agrícola. A modelagem segue princípios de normalização, integridade referencial e modularidade, visando uma base sólida e escalável.
+
+---
+
+## 🧱 Entidades
+
+As entidades estão organizadas por domínio funcional.
+
+---
+
+### 🌾 Domínio Agrícola
+
+#### 🏡 FAZENDA
+
+| Campo          | Tipo     | Obrigatório | Descrição                                 |
+|----------------|----------|-------------|--------------------------------------------|
+| `id`           | int      | ✅           | Identificador único da fazenda             |
+| `nome`         | string   | ✅           | Nome da fazenda                            |
+| `localizacao`  | string   | ✅           | Cidade, estado ou coordenadas              |
+| `hectares`     | float    | ✅           | Tamanho total em hectares                  |
+| `proprietario` | string   | ❌           | Nome do responsável                        |
+
+---
+
+#### 🧱 ÁREA
+
+| Campo         | Tipo     | Obrigatório | Descrição                                  |
+|---------------|----------|-------------|---------------------------------------------|
+| `id`          | int      | ✅           | Identificador único da área                |
+| `nome`        | string   | ✅           | Nome ou código interno                     |
+| `tipo_solo`   | string   | ❌           | Classificação do solo                      |
+| `hectares`    | float    | ✅           | Tamanho da área                            |
+| `fazenda_id`  | int (FK) | ✅           | Ref. à fazenda proprietária                |
+
+---
+
+#### 🌱 CULTURA
+
+| Campo           | Tipo     | Obrigatório | Descrição                                   |
+|-----------------|----------|-------------|----------------------------------------------|
+| `id`            | int      | ✅           | Identificador único                         |
+| `tipo`          | string   | ✅           | Tipo de cultivo (milho, soja, etc.)         |
+| `data_plantio`  | date     | ✅           | Data real ou prevista de plantio            |
+| `data_colheita` | date     | ❌           | Data real ou prevista de colheita           |
+| `area_id`       | int (FK) | ✅           | Ref. à área plantada                        |
+
+---
+
+### 🛠️ Domínio Operacional
+
+#### 🧪 INSUMO
+
+| Campo           | Tipo     | Obrigatório | Descrição                                    |
+|------------------|----------|-------------|-----------------------------------------------|
+| `id`             | int      | ✅           | Identificador único                          |
+| `nome`           | string   | ✅           | Nome do insumo                               |
+| `tipo`           | string   | ✅           | Categoria (fertilizante, semente, etc.)      |
+| `quantidade`     | float    | ✅           | Quantidade atual em estoque                  |
+| `unidade`        | string   | ✅           | Unidade de medida (kg, L, sacas, etc.)       |
+| `descricao`      | string   | ❌           | Informações adicionais                       |
+
+---
+
+#### 🛠️ ATIVIDADE
+
+| Campo             | Tipo     | Obrigatório | Descrição                                   |
+|-------------------|----------|-------------|----------------------------------------------|
+| `id`              | int      | ✅           | Identificador único                         |
+| `tipo`            | string   | ✅           | Tipo (plantio, irrigação, colheita, etc.)   |
+| `descricao`       | string   | ❌           | Detalhes da operação                        |
+| `data_execucao`   | date     | ✅           | Data de execução                            |
+| `area_id`         | int (FK) | ✅           | Ref. à área onde ocorreu                    |
+| `usuario_id`      | int (FK) | ❌           | Ref. ao usuário que registrou               |
+
+> 🧩 Extensível: poderá se relacionar com insumos utilizados em cada tarefa.
+
+---
+
+### 👤 Domínio de Acesso
+
+#### 👤 USUÁRIO
+
+| Campo         | Tipo     | Obrigatório | Descrição                                   |
+|---------------|----------|-------------|----------------------------------------------|
+| `id`          | int      | ✅           | Identificador único                         |
+| `nome`        | string   | ✅           | Nome completo                               |
+| `email`       | string   | ✅           | E-mail único                                |
+| `senha_hash`  | string   | ✅           | Hash da senha                               |
+| `perfil`      | string   | ✅           | Papel (`admin`, `produtor`, `func`)         |
+
+---
+
+## 🔁 Relacionamentos
+
+| Entidade origem | Entidade destino | Tipo        | Descrição                                         |
+|------------------|------------------|-------------|--------------------------------------------------|
+| Fazenda          | Área             | 1 : N       | Uma fazenda possui várias áreas                  |
+| Área             | Cultura          | 1 : N       | Uma área pode conter várias culturas             |
+| Área             | Atividade        | 1 : N       | Uma área pode ter várias atividades operacionais |
+| Usuário          | Atividade        | 1 : N       | (opcional) Um usuário pode registrar atividades  |
+| Atividade        | Insumo           | N : N (futuro) | Uma atividade pode consumir vários insumos     |
+
+> 🔧 O relacionamento entre `ATIVIDADE` e `INSUMO` será implementado por meio de uma tabela associativa `atividade_insumo` no futuro.
+
+---
+
+## 🧭 Design e Considerações
+
+- Todos os campos `*_id` são chaves primárias ou estrangeiras com restrições explícitas.
+- A modelagem segue 3FN (Terceira Forma Normal), evitando redundância.
+- Tipos de dados são genéricos para facilitar migração entre SGBDs (ex: SQLite → PostgreSQL).
+- Toda entidade pode ser estendida sem impacto nas dependentes (baixo acoplamento).
+
+---
+
+## 📐 Diagrama ER Visual
+
+O diagrama visual desta modelagem está disponível em:
+
+👉 [`diagrams/der.md`](../diagrams/der.md)
+
+---
+
+## 📌 Próximos passos
+
+- Adicionar controle de estoque por safra
+- Associar `ATIVIDADE` a múltiplos insumos com quantidades
+- Adicionar `LOG` para rastreabilidade (auditoria leve)
+- Evoluir para múltiplos usuários por fazenda com permissão por perfil
+
+---
+
