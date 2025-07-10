@@ -14,37 +14,43 @@ As entidades estão organizadas por domínio funcional.
 
 #### 🏡 FAZENDA
 
-| Campo          | Tipo     | Obrigatório | Descrição                                 |
-|----------------|----------|-------------|--------------------------------------------|
-| `id`           | int      | ✅           | Identificador único da fazenda             |
-| `nome`         | string   | ✅           | Nome da fazenda                            |
-| `localizacao`  | string   | ✅           | Cidade, estado ou coordenadas              |
-| `hectares`     | float    | ✅           | Tamanho total em hectares                  |
-| `proprietario` | string   | ❌           | Nome do responsável                        |
+| Campo               | Tipo     | Obrigatório  | Descrição                                               |
+|---------------------|----------|--------------|---------------------------------------------------------|
+| `id`                | int      | ✅           | Identificador único da fazenda                          |
+| `nome`              | string   | ✅           | Nome da fazenda                                         |
+| `localizacao`       | string   | ✅           | Cidade, estado ou coordenadas                           |
+| `hectares`          | float    | ✅           | Tamanho total em hectares                               |
+| `tipo_pessoa`       | string   | ✅           | Tipo de pessoa: 'Física' ou 'Jurídica'                  |
+| `cpf`               | string   | condicional  | CPF do proprietário, obrigatório se tipo_pessoa='Física'|
+| `cnpj`              | string   | condicional  | CNPJ da fazenda, obrigatório se tipo_pessoa='Jurídica'  |
+| `proprietario`      | string   | ❌           | Nome do responsável                                     |
+| `inscricao_estadual`| string   | ❌           | Inscrição estadual, se aplicável                        |
+| `razao_social`      | string   | ❌           | Razão social, se pessoa jurídica                        |
+| `data_abertura`     | string   | ❌           | Data de abertura da empresa, se pessoa jurídica         |
 
 ---
 
 #### 🧱 ÁREA
 
-| Campo         | Tipo     | Obrigatório | Descrição                                  |
-|---------------|----------|-------------|---------------------------------------------|
-| `id`          | int      | ✅           | Identificador único da área                |
-| `nome`        | string   | ✅           | Nome ou código interno                     |
-| `tipo_solo`   | string   | ❌           | Classificação do solo                      |
-| `hectares`    | float    | ✅           | Tamanho da área                            |
-| `fazenda_id`  | int (FK) | ✅           | Ref. à fazenda proprietária                |
+| Campo               | Tipo     | Obrigatório | Descrição                                                |
+|---------------------|----------|-------------|----------------------------------------------------------|
+| `id`                | int      | ✅          | Identificador único da área                              |
+| `nome`              | string   | ✅          | Nome ou código interno                                   |
+| `tipo_solo`         | string   | ❌          | Classificação do solo                                    |
+| `hectares`          | float    | ✅          | Tamanho da área                                          |
+| `fazenda_id`        | int (FK) | ✅          | Ref. à fazenda proprietária                              |
 
 ---
 
 #### 🌱 CULTURA
 
-| Campo           | Tipo     | Obrigatório | Descrição                                   |
-|-----------------|----------|-------------|----------------------------------------------|
-| `id`            | int      | ✅           | Identificador único                         |
-| `tipo`          | string   | ✅           | Tipo de cultivo (milho, soja, etc.)         |
-| `data_plantio`  | date     | ✅           | Data real ou prevista de plantio            |
-| `data_colheita` | date     | ❌           | Data real ou prevista de colheita           |
-| `area_id`       | int (FK) | ✅           | Ref. à área plantada                        |
+| Campo               | Tipo     | Obrigatório | Descrição                                                |
+|---------------------|----------|-------------|----------------------------------------------------------|
+| `id`                | int      | ✅          | Identificador único                                      |
+| `tipo`              | string   | ✅          | Tipo de cultivo (milho, soja, etc.)                      |
+| `data_plantio`      | date     | ✅          | Data real ou prevista de plantio                         |
+| `data_colheita`     | date     | ❌          | Data real ou prevista de colheita                        |
+| `area_id`           | int (FK) | ✅          | Ref. à área plantada                                     |
 
 ---
 
@@ -52,27 +58,27 @@ As entidades estão organizadas por domínio funcional.
 
 #### 🧪 INSUMO
 
-| Campo           | Tipo     | Obrigatório | Descrição                                    |
-|------------------|----------|-------------|-----------------------------------------------|
-| `id`             | int      | ✅           | Identificador único                          |
-| `nome`           | string   | ✅           | Nome do insumo                               |
-| `tipo`           | string   | ✅           | Categoria (fertilizante, semente, etc.)      |
-| `quantidade`     | float    | ✅           | Quantidade atual em estoque                  |
-| `unidade`        | string   | ✅           | Unidade de medida (kg, L, sacas, etc.)       |
-| `descricao`      | string   | ❌           | Informações adicionais                       |
+| Campo               | Tipo     | Obrigatório | Descrição                                                |
+|---------------------|----------|-------------|----------------------------------------------------------|
+| `id`                | int      | ✅          | Identificador único                                      |
+| `nome`              | string   | ✅          | Nome do insumo                                           |
+| `tipo`              | string   | ✅          | Categoria (fertilizante, semente, etc.)                  |
+| `quantidade`        | float    | ✅          | Quantidade atual em estoque                              |
+| `unidade`           | string   | ✅          | Unidade de medida (kg, L, sacas, etc.)                   |
+| `descricao`         | string   | ❌          | Informações adicionais                                   |
 
 ---
 
 #### 🛠️ ATIVIDADE
 
-| Campo             | Tipo     | Obrigatório | Descrição                                   |
-|-------------------|----------|-------------|----------------------------------------------|
-| `id`              | int      | ✅           | Identificador único                         |
-| `tipo`            | string   | ✅           | Tipo (plantio, irrigação, colheita, etc.)   |
-| `descricao`       | string   | ❌           | Detalhes da operação                        |
-| `data_execucao`   | date     | ✅           | Data de execução                            |
-| `area_id`         | int (FK) | ✅           | Ref. à área onde ocorreu                    |
-| `usuario_id`      | int (FK) | ❌           | Ref. ao usuário que registrou               |
+| Campo               | Tipo     | Obrigatório | Descrição                                                |
+|---------------------|----------|-------------|----------------------------------------------------------|
+| `id`                | int      | ✅          | Identificador único                                      |
+| `tipo`              | string   | ✅          | Tipo (plantio, irrigação, colheita, etc.)                |
+| `descricao`         | string   | ❌          | Detalhes da operação                                     |
+| `data_execucao`     | date     | ✅          | Data de execução                                         |
+| `area_id`           | int (FK) | ✅          | Ref. à área onde ocorreu                                 |
+| `usuario_id`        | int (FK) | ❌          | Ref. ao usuário que registrou                            |
 
 > 🧩 Extensível: poderá se relacionar com insumos utilizados em cada tarefa.
 
@@ -82,25 +88,25 @@ As entidades estão organizadas por domínio funcional.
 
 #### 👤 USUÁRIO
 
-| Campo         | Tipo     | Obrigatório | Descrição                                   |
-|---------------|----------|-------------|----------------------------------------------|
-| `id`          | int      | ✅           | Identificador único                         |
-| `nome`        | string   | ✅           | Nome completo                               |
-| `email`       | string   | ✅           | E-mail único                                |
-| `senha_hash`  | string   | ✅           | Hash da senha                               |
-| `perfil`      | string   | ✅           | Papel (`admin`, `produtor`, `func`)         |
+| Campo                | Tipo     | Obrigatório | Descrição                                               |
+|----------------------|----------|-------------|---------------------------------------------------------|
+| `id`                 | int      | ✅          | Identificador único                                     |
+| `nome`               | string   | ✅          | Nome completo                                           |
+| `email`              | string   | ✅          | E-mail único                                            |
+| `senha_hash`         | string   | ✅          | Hash da senha                                           |
+| `perfil`             | string   | ✅          | Papel (`admin`, `produtor`, `func`)                     |
 
 ---
 
 ## 🔁 Relacionamentos
 
-| Entidade origem | Entidade destino | Tipo        | Descrição                                         |
-|------------------|------------------|-------------|--------------------------------------------------|
-| Fazenda          | Área             | 1 : N       | Uma fazenda possui várias áreas                  |
-| Área             | Cultura          | 1 : N       | Uma área pode conter várias culturas             |
-| Área             | Atividade        | 1 : N       | Uma área pode ter várias atividades operacionais |
-| Usuário          | Atividade        | 1 : N       | (opcional) Um usuário pode registrar atividades  |
-| Atividade        | Insumo           | N : N (futuro) | Uma atividade pode consumir vários insumos     |
+| Entidade origem      | Entidade destino | Tipo        | Descrição                                        |
+|----------------------|------------------|-------------|--------------------------------------------------|
+| Fazenda              | Área             | 1 : N       | Uma fazenda possui várias áreas                  |
+| Área                 | Cultura          | 1 : N       | Uma área pode conter várias culturas             |
+| Área                 | Atividade        | 1 : N       | Uma área pode ter várias atividades operacionais |
+| Usuário              | Atividade        | 1 : N       | (opcional) Um usuário pode registrar atividades  |
+| Atividade            | Insumo           | N : N (...) | Uma atividade pode consumir vários insumos       |
 
 > 🔧 O relacionamento entre `ATIVIDADE` e `INSUMO` será implementado por meio de uma tabela associativa `atividade_insumo` no futuro.
 
