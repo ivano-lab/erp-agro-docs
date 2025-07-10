@@ -1,4 +1,11 @@
-## 📐 Diagrama Entidade-Relacionamento (DER)
+# 📐 Diagrama ER — ERP Agro (versão inicial)
+
+Este diagrama representa a modelagem de dados inicial do ERP Agro, com foco nas entidades principais: **Fazenda**, **Área** e **Cultura**.
+
+> Renderizado automaticamente via Mermaid no GitHub.  
+> Última atualização: 2025-07-08
+
+---
 
 ```mermaid
 erDiagram
@@ -28,4 +35,4 @@ erDiagram
         date data_colheita
         int area_id
     }
-```
+
