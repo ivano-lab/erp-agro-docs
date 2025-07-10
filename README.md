@@ -25,14 +25,23 @@ Este repositório tem como objetivo:
 
 erp-agro-docs/
 ├── docs/ <- Documentos em Markdown
+
 │ ├── 01-visao-geral.md
+
 │ ├── 02-arquitetura.md
+
 │ ├── 03-modelagem-dados.md
+
 │ ├── 04-requisitos.md
+
 │ ├── 05-api.md
+
 │ └── 06-roadmap.md
+
 ├── diagrams/ <- Imagens e diagramas (PNG, SVG)
+
 ├── api-spec/ <- OpenAPI/Swagger (em breve)
+
 └── README.md <- Você está aqui
 
 
