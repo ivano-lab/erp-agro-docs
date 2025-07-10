@@ -106,7 +106,7 @@ As entidades estão organizadas por domínio funcional.
 | Área                 | Cultura          | 1 : N       | Uma área pode conter várias culturas             |
 | Área                 | Atividade        | 1 : N       | Uma área pode ter várias atividades operacionais |
 | Usuário              | Atividade        | 1 : N       | (opcional) Um usuário pode registrar atividades  |
-| Atividade            | Insumo           | N : N (...) | Uma atividade pode consumir vários insumos       |
+| Atividade            | Insumo           | N : N (futuro) | Uma atividade pode consumir vários insumos       |
 
 > 🔧 O relacionamento entre `ATIVIDADE` e `INSUMO` será implementado por meio de uma tabela associativa `atividade_insumo` no futuro.
 
