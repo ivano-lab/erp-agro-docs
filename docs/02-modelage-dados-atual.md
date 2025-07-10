@@ -106,11 +106,11 @@ As entidades estão organizadas por domínio funcional.
 
 ---
 
-## 🧭 Design e Considerações
+## 🧭 Normalização e Consistência
 
 - Todos os campos `*_id` são chaves primárias ou estrangeiras com restrições explícitas.
 - A modelagem segue 3FN (Terceira Forma Normal), evitando redundância.
-- Tipos de dados são genéricos para facilitar migração entre SGBDs (ex: SQLite → PostgreSQL).
+- Tipos de dados são genéricos para facilitar migração entre SGBDs (ex: SQLite → MySQL).
 - Toda entidade pode ser estendida sem impacto nas dependentes (baixo acoplamento).
 
 ---
