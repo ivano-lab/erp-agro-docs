@@ -11,6 +11,9 @@ Este diagrama representa a modelagem de dados do ERP Agro, com foco nas entidade
 erDiagram
     FAZENDA ||--o{ AREA : possui
     AREA ||--o{ CULTURA : contem
+    AREA ||--o{ ATIVIDADE : executa
+    USUARIO ||--0{ ATIVIDADE : registra
+    
 
     FAZENDA {
         int id
