@@ -59,7 +59,7 @@ erDiagram
         int usuario_id
     }
 
-    USUÁRIO {
+    USUARIO {
         int id
         string nome
         string email
