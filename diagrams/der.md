@@ -12,7 +12,7 @@ erDiagram
     FAZENDA ||--o{ AREA : possui
     AREA ||--o{ CULTURA : contem
     AREA ||--o{ ATIVIDADE : executa
-    USUARIO ||--0{ ATIVIDADE : registra
+    USUARIO ||--o{ ATIVIDADE : registra
     
 
     FAZENDA {
