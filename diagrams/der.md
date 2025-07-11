@@ -9,12 +9,14 @@ Este diagrama representa a modelagem de dados do ERP Agro, com foco nas entidade
 
 ```mermaid
 erDiagram
-    FAZENDA ||--o{ AREA : possui
-    AREA ||--o{ CULTURA : contem
-    AREA ||--o{ ATIVIDADE : executa
-    USUARIO ||--o{ ATIVIDADE : registra
+    FAZENDA   ||--o{ AREA : possui
+    AREA      ||--o{ CULTURA : contem
+    AREA      ||--o{ ATIVIDADE : executa
+    USUARIO   ||--o{ ATIVIDADE : registra
+    ATIVIDADE }o--o{ INSUMO : consome
+    ATIVIDADE ||--o{ ATIVIDADE_INSUMO : possui
+    INSUMO    ||--o{ ATIVIDADE_INSUMO : utilizado_em
     
-
     FAZENDA {
         int id
         string nome
