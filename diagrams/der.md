@@ -1,6 +1,6 @@
 # 📐 Diagrama ER — ERP Agro 
 
-Este diagrama representa a modelagem de dados inicial do ERP Agro, com foco nas entidades principais: **Fazenda**, **Área**, **Cultura**, **Insumo** e **Atividade**.
+Este diagrama representa a modelagem de dados do ERP Agro, com foco nas entidades principais: **Fazenda**, **Área**, **Cultura**, **Insumo** e **Atividade**.
 
 > Renderizado automaticamente via Mermaid no GitHub.  
 > Última atualização: 2025-07-08
