@@ -58,3 +58,11 @@ erDiagram
         int area_id
         int usuario_id
     }
+
+    USUÁRIO {
+        int id
+        string nome
+        string email
+        string senha_hash
+        string perfil    
+    }
