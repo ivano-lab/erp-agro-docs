@@ -1,4 +1,4 @@
-# 📐 Diagrama ER — ERP Agro (versão inicial)
+# 📐 Diagrama ER — ERP Agro 
 
 Este diagrama representa a modelagem de dados inicial do ERP Agro, com foco nas entidades principais: **Fazenda**, **Área** e **Cultura**.
 
@@ -36,3 +36,20 @@ erDiagram
         int area_id
     }
 
+    INSUMO {
+        int id
+        string nome
+        string tipo
+        float quantidade
+        string unidade
+        string descricao
+    }
+
+    ATIVIDADE {
+        int id
+        string tipo
+        string descricao
+        date data_execucao
+        int (FK) area_id
+        int (FK) usuario_id
+    }
