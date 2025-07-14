@@ -42,15 +42,31 @@ As entidades estão organizadas por domínio funcional.
 
 ---
 
-#### 🌱 CULTURA
+### 🌱 CULTURA (refatorada)
 
-| Campo               | Tipo     | Obrigatório | Descrição                                                |
-|---------------------|----------|-------------|----------------------------------------------------------|
-| `id`                | int      | ✅          | Identificador único                                      |
-| `tipo`              | string   | ✅          | Tipo de cultivo (milho, soja, etc.)                      |
-| `data_plantio`      | date     | ✅          | Data real ou prevista de plantio                         |
-| `data_colheita`     | date     | ❌          | Data real ou prevista de colheita                        |
-| `area_id`           | int (FK) | ✅          | Ref. à área plantada                                     |
+Representa o tipo de cultivo implantado em uma determinada área agrícola.
+
+| Campo        | Tipo     | Obrigatório | Descrição                                 |
+|--------------|----------|-------------|--------------------------------------------|
+| `id`         | int      | ✅           | Identificador único da cultura             |
+| `tipo`       | string   | ✅           | Nome do cultivo (milho, soja, arroz...)    |
+| `area_id`    | int (FK) | ✅           | Referência à área onde esse cultivo ocorre |
+
+> 🔁 A cultura pode ter várias safras ao longo do tempo.
+
+---
+
+### 🌾 SAFRA
+
+Representa uma instância específica de plantio e colheita de uma determinada cultura em uma área, dentro de um período agrícola.
+
+| Campo           | Tipo     | Obrigatório | Descrição                                 |
+|------------------|----------|-------------|--------------------------------------------|
+| `id`             | int      | ✅           | Identificador único da safra              |
+| `cultura_id`     | int (FK) | ✅           | Referência à cultura associada            |
+| `data_plantio`   | date     | ✅           | Data do plantio                           |
+| `data_colheita`  | date     | ❌           | Data da colheita (real ou prevista)       |
+| `observacoes`    | string   | ❌           | Anotações adicionais sobre a safra        |
 
 ---
 
@@ -106,7 +122,10 @@ As entidades estão organizadas por domínio funcional.
 | Área                 | Cultura          | 1 : N       | Uma área pode conter várias culturas             |
 | Área                 | Atividade        | 1 : N       | Uma área pode ter várias atividades operacionais |
 | Usuário              | Atividade        | 1 : N       | (opcional) Um usuário pode registrar atividades  |
-| Atividade            | Insumo           | N : N (futuro) | Uma atividade pode consumir vários insumos       |
+| Atividade            | Insumo           | N : N (futuro) | Uma atividade pode consumir vários insumos    |
+| Cultura              | Safra            | 1:N         | Uma cultura pode gerar várias safras             |
+
+
 
 > 🔧 O relacionamento entre `ATIVIDADE` e `INSUMO` será implementado por meio de uma tabela associativa `atividade_insumo` no futuro.
 
