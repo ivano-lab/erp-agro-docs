@@ -12,6 +12,7 @@ erDiagram
     FAZENDA   ||--o{ AREA : possui
     AREA      ||--o{ CULTURA : contem
     AREA      ||--o{ ATIVIDADE : executa
+    CULTURA   ||--o{ SAFRA : gera
     USUARIO   ||--o{ ATIVIDADE : registra
     ATIVIDADE ||--o{ ATIVIDADE_INSUMO : possui
     INSUMO    ||--o{ ATIVIDADE_INSUMO : utilizado_em
@@ -38,6 +39,14 @@ erDiagram
         date data_plantio
         date data_colheita
         int area_id
+    }
+
+    SAFRA {
+        int id
+        int cultura_id
+        date data_plantio
+        date data_colheita
+        string observacoes
     }
 
     INSUMO {
