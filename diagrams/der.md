@@ -36,8 +36,6 @@ erDiagram
     CULTURA {
         int id
         string tipo
-        date data_plantio
-        date data_colheita
         int area_id
     }
 
