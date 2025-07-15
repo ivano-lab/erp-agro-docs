@@ -20,3 +20,13 @@ Autentica o usuário e retorna um token JWT.
   "senha": "senha123"
 }
 
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+
+## 🏡 Fazendas
+GET /fazendas
+Retorna a lista de fazendas cadastradas.
+
+🔸 Response
+
