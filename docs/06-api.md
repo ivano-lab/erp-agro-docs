@@ -23,6 +23,7 @@ Autentica o usuário e retorna um token JWT.
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
+```
 
 ## 🏡 Fazendas
 GET /fazendas
