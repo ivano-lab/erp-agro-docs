@@ -25,7 +25,7 @@ Autentica o usuário e retorna um token JWT.
 }
 ```
 
-## 🏡 Fazendas
+### 🏡 Fazendas
 GET /fazendas
 Retorna a lista de fazendas cadastradas.
 
