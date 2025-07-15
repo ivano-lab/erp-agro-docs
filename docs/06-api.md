@@ -27,7 +27,21 @@ Autentica o usuário e retorna um token JWT.
 
 ### 🏡 Fazendas
 GET /fazendas
+
 Retorna a lista de fazendas cadastradas.
 
 🔸 Response
 
+```
+
+[
+  {
+    "id": 1,
+    "nome": "Fazenda Boa Terra",
+    "localizacao": "Palmas - TO",
+    "hectares": 45.0,
+    "proprietario": "José da Silva"
+  }
+]
+
+```
