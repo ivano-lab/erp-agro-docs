@@ -45,3 +45,26 @@ Retorna a lista de fazendas cadastradas.
 ]
 
 ```
+
+POST /fazendas
+
+Cadastra uma nova fazenda.
+
+```
+
+{
+  "nome": "Fazenda Boa Terra",
+  "localizacao": "Palmas - TO",
+  "hectares": 45.0,
+  "proprietario": "José da Silva"
+}
+
+```
+
+PUT /fazendas/:id
+
+Atualiza os dados de uma fazenda existente.
+
+DELETE /fazendas/:id
+
+Exclui uma fazenda (desde que não tenha áreas vinculadas).
