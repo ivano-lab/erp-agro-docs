@@ -68,3 +68,59 @@ Atualiza os dados de uma fazenda existente.
 DELETE /fazendas/:id
 
 Exclui uma fazenda (desde que não tenha áreas vinculadas).
+
+### 🧱 Áreas
+GET /fazendas/:fazendaId/areas
+
+Lista as áreas de uma fazenda específica.
+
+POST /fazendas/:fazendaId/areas
+
+Cria uma nova área dentro de uma fazenda.
+
+```
+{
+  "nome": "Área A1",
+  "tipo_solo": "Arenoso",
+  "hectares": 10.5
+}
+
+```
+
+### 🌱 Culturas
+
+GET /areas/:areaId/culturas
+
+Retorna as culturas cadastradas em uma área.
+
+POST /areas/:areaId/culturas
+
+Cria uma cultura vinculada à área.
+
+```
+
+{
+  "tipo": "Milho"
+}
+
+```
+
+### 🌾 Safras
+
+GET /culturas/:culturaId/safras
+
+Lista todas as safras associadas à cultura.
+
+POST /culturas/:culturaId/safras
+
+Registra uma nova safra.
+
+```
+
+{
+  "data_plantio": "2025-02-15",
+  "data_colheita": "2025-06-20",
+  "observacoes": "Plantio com atraso devido à seca."
+}
+
+```
