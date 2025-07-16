@@ -22,7 +22,13 @@ erDiagram
         string nome
         string localizacao
         float hectares
+        string tipo_pessoa
+        string cpf
+        string cnpj
         string proprietario
+        string inscricao_estadual
+        string razao_social
+        string data_abertura
     }
 
     AREA {
